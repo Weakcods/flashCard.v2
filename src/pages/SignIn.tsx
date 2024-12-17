@@ -2,15 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, LogIn, Eye, EyeOff } from "lucide-react";
+import { ArrowLeft, LogIn, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { SocialAuth } from "@/components/auth/SocialAuth";
-import { bouncy } from 'ldrs';
-
-bouncy.register();
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -149,7 +146,7 @@ export default function SignIn() {
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
-                  <l-bouncy size="25" speed="1.75" color="white"></l-bouncy>
+                  <Loader2 className="h-6 w-6 animate-spin" />
                 </div>
               ) : (
                 <>

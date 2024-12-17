@@ -3,6 +3,7 @@ import { FileUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { flashcardService } from "@/services/flashcardService";
 import * as pdfjsLib from 'pdfjs-dist';
+import { Loader2 } from "lucide-react";
 
 // Initialize pdf.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -89,7 +90,7 @@ export function PDFUploader() {
       </div>
       {isLoading && (
         <div className="mt-4 flex justify-center">
-          <l-bouncy size="45" speed="1.75" color="var(--revigreen)"></l-bouncy>
+          <Loader2 className="h-12 w-12 animate-spin text-revigreen" />
         </div>
       )}
     </div>

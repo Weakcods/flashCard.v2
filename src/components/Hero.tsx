@@ -57,7 +57,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-br from-revigreen/10 to-background z-0" />
       <div className="relative z-10 max-w-4xl mx-auto space-y-10">
         <motion.div className="space-y-6" variants={itemVariants}>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 mt-4">
             Ace your reviews anytime 
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -77,7 +77,7 @@ export function Hero() {
               onClick={() => navigate("/signin")}
               className="bg-revigreen hover:bg-revigreen/90 text-white px-10 py-6 text-lg rounded-full w-full sm:w-auto shadow-lg"
             >
-              Start Reviewing
+              Review now
               <motion.div
                 animate={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}

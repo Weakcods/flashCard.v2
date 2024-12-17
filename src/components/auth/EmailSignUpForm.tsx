@@ -1,15 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { UserPlus, Eye, EyeOff } from "lucide-react";
+import { UserPlus, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
-import { bouncy } from 'ldrs';
 import { OTPVerification } from "./OTPVerification";
-
-bouncy.register();
 
 export const EmailSignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -140,7 +137,7 @@ export const EmailSignUpForm = () => {
       >
         {isLoading ? (
           <div className="flex items-center justify-center">
-            <l-bouncy size="25" speed="1.75" color="white"></l-bouncy>
+            <Loader2 className="h-6 w-6 animate-spin" />
           </div>
         ) : (
           <>

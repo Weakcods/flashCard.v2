@@ -4,11 +4,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "./ui/alert-dialog";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, UserRound } from "lucide-react";
+import { LogOut, UserRound, Loader2 } from "lucide-react";
 import { useState } from "react";
-import { bouncy } from 'ldrs';
-
-bouncy.register();
 
 export function DashboardHeader() {
   const navigate = useNavigate();
@@ -36,7 +33,7 @@ export function DashboardHeader() {
   if (isLoading) {
     return (
       <div className="fixed inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
-        <l-bouncy size="45" speed="1.75" color="var(--revigreen)"></l-bouncy>
+        <Loader2 className="h-12 w-12 animate-spin text-revigreen" />
       </div>
     );
   }

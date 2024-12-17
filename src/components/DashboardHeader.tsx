@@ -44,7 +44,7 @@ export function DashboardHeader() {
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Revicard</h1>
+        <h1 className="text-2xl font-bold">Reviewcard</h1>
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <DropdownMenu>

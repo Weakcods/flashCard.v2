@@ -8,11 +8,13 @@ const Index = () => {
       <header className="fixed top-0 w-full bg-background/80 backdrop-blur-sm z-50">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <h1 className="text-2xl font-bold">
-            Revi<span className="text-revigreen">card</span>
+            Review<span className="text-revigreen">card</span>
           </h1>
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <button className="bg-revigreen text-white px-4 py-2 rounded-lg hover:bg-revigreen/90 transition-colors">
+            <button 
+              onClick={() => window.location.href = "/signin"}
+              className="bg-revigreen text-white px-4 py-2 rounded-lg hover:bg-revigreen/90 transition-colors">
               Sign In
             </button>
           </div>

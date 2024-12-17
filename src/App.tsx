@@ -12,8 +12,10 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import NetworkError from "./pages/NetworkError";
 import { LoadingOverlay } from "./components/LoadingOverlay";
+import { DevelopmentBanner } from "./components/ui/development-banner";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { cn } from "@/lib/utils";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,17 +28,24 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [showDevBanner, setShowDevBanner] = useState(() => {
+    return localStorage.getItem('devBannerDismissed') !== 'true';
+  });
+
+  const handleDismissBanner = () => {
+    setShowDevBanner(false);
+    localStorage.setItem('devBannerDismissed', 'true');
+  };
 
   useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange((event) => {
+    const authListener = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_OUT' || event === 'SIGNED_IN') {
         setIsLoading(true);
         setTimeout(() => setIsLoading(false), 1000); // Show loading for at least 1 second
       }
     });
-
     return () => {
-      authListener?.subscription.unsubscribe();
+      authListener.data.subscription.unsubscribe();
     };
   }, []);
 
@@ -44,19 +53,26 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="light" storageKey="revicard-theme">
         <TooltipProvider>
-          <LoadingOverlay isLoading={isLoading} />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/signin" element={<SignIn />} />
-              <Route path="/signup" element={<SignUp />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/network-error" element={<NetworkError />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-          <Toaster />
-          <Sonner />
+          <div className="min-h-screen flex flex-col">
+            {showDevBanner && <DevelopmentBanner onClose={handleDismissBanner} />}
+            <div className={cn("flex-1", showDevBanner && "mt-[40px]")}>
+              <LoadingOverlay isLoading={isLoading} />
+              <BrowserRouter>
+                <main className="flex-1">
+                  <Routes>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/network-error" element={<NetworkError />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </main>
+              </BrowserRouter>
+            </div>
+            <Toaster />
+            <Sonner />
+          </div>
         </TooltipProvider>
       </ThemeProvider>
     </QueryClientProvider>

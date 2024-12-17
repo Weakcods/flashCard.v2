@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { flashcardService } from "@/services/flashcardService";
 import * as pdfjsLib from 'pdfjs-dist';
 import { Loader2 } from "lucide-react";
+import { TextItem, TextMarkedContent } from 'pdfjs-dist/types/src/display/api';
 
 // Initialize pdf.js worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -26,7 +27,10 @@ export function PDFUploader() {
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const textContent = await page.getTextContent();
-        const pageText = textContent.items.map((item: any) => item.str).join(' ');
+        const pageText = textContent.items
+          .filter((item): item is TextItem => 'str' in item)
+          .map(item => item.str)
+          .join(' ');
         fullText += pageText + ' ';
       }
       

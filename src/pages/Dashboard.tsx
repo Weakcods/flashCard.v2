@@ -15,7 +15,7 @@ export default function Dashboard() {
   const [isReviewing, setIsReviewing] = useState(false);
   const [cards, setCards] = useState<Flashcard[]>(() => flashcardService.getAll());
   const [editingCard, setEditingCard] = useState<Flashcard | null>(null);
-  const [activeSection, setActiveSection] = useState<'upload' | 'create' | 'profile' | 'ai'>('upload');
+  const [activeSection, setActiveSection] = useState<'upload' | 'create' | 'profile' | 'ai' | 'feedback'>('upload');
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({

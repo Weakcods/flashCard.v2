@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { FileText, Plus, UserRound, Brain } from "lucide-react";
 
 type DesktopSidebarProps = {
-  activeSection: 'upload' | 'create' | 'profile' | 'ai';
-  onSectionChange: (section: 'upload' | 'create' | 'profile' | 'ai') => void;
+  activeSection: 'upload' | 'create' | 'profile' | 'ai' | 'feedback';
+  onSectionChange: (section: 'upload' | 'create' | 'profile' | 'ai' | 'feedback') => void;
 };
 
 export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSidebarProps) {

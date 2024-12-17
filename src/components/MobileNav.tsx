@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Plus, UserRound, Brain } from "lucide-react";
+import { FileText, Plus, UserRound, Brain, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type MobileNavProps = {
-  activeSection: 'upload' | 'create' | 'profile' | 'ai';
-  onSectionChange: (section: 'upload' | 'create' | 'profile' | 'ai') => void;
+  activeSection: 'upload' | 'create' | 'profile' | 'ai' | 'feedback';
+  onSectionChange: (section: 'upload' | 'create' | 'profile' | 'ai' | 'feedback') => void;
 };
 
 export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
@@ -35,6 +35,12 @@ export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
             icon={<UserRound className="h-5 w-5" />}
             label="Profile"
             onClick={() => onSectionChange('profile')}
+          />
+          <NavButton
+            isActive={activeSection === 'feedback'}
+            icon={<MessageSquare className="h-5 w-5" />}
+            label="Feedback"
+            onClick={() => onSectionChange('feedback')}
           />
         </div>
       </div>

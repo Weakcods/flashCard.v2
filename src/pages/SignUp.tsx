@@ -21,7 +21,7 @@ export default function SignUp() {
           <div className="flex items-center gap-2">
             <AlertCircle className="h-4 w-4 text-revigreen flex-shrink-0" />
             <AlertDescription className="text-revigreen text-sm">
-              This site is under development.
+              This site is under development, some function may not work as expected.
             </AlertDescription>
           </div>
           <Button 

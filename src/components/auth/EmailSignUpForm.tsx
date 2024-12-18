@@ -5,8 +5,9 @@ import { UserPlus, Eye, EyeOff, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { OTPVerification } from "./OTPVerification";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export const EmailSignUpForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -16,11 +17,22 @@ export const EmailSignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showOTPVerification, setShowOTPVerification] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleEmailSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!acceptedTerms) {
+      toast({
+        variant: "destructive",
+        title: "Terms & Privacy",
+        description: "Please accept the terms and privacy policy to continue.",
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -130,10 +142,33 @@ export const EmailSignUpForm = () => {
           </Button>
         </div>
       </div>
+      <div className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Checkbox 
+            id="terms" 
+            checked={acceptedTerms}
+            onCheckedChange={(checked) => setAcceptedTerms(checked as boolean)}
+            disabled={isLoading}
+          />
+          <label
+            htmlFor="terms"
+            className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          >
+            I agree to the{" "}
+            <Link to="/terms" className="text-primary hover:underline">
+              Terms of Service
+            </Link>{" "}
+            and{" "}
+            <Link to="/privacy" className="text-primary hover:underline">
+              Privacy Policy
+            </Link>
+          </label>
+        </div>
+      </div>
       <Button 
         type="submit" 
         className="w-full"
-        disabled={isLoading}
+        disabled={isLoading || !acceptedTerms}
       >
         {isLoading ? (
           <div className="flex items-center justify-center">

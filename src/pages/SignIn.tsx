@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ArrowLeft, LogIn, Eye, EyeOff, Loader2, AlertCircle, X } from "lucide-react";
+import { ArrowLeft, LogIn, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -16,7 +15,6 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -83,27 +81,7 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-3 py-12 sm:py-16 relative bg-background">
-      {showNotification && (
-        <Alert 
-          className="fixed top-4 left-1/2 -translate-x-1/2 max-w-md w-[calc(100%-2rem)] z-50 border-revigreen bg-revigreen/10 animate-in fade-in duration-700 flex items-center justify-between"
-        >
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-revigreen flex-shrink-0" />
-            <AlertDescription className="text-revigreen text-sm">
-            This site is under development, some function may not work as expected.
-            </AlertDescription>
-          </div>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-6 w-6 shrink-0 text-revigreen hover:bg-revigreen/20 -mr-2"
-            onClick={() => setShowNotification(false)}
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close notification</span>
-          </Button>
-        </Alert>
-      )}
+      
 
       <Button
         variant="ghost"

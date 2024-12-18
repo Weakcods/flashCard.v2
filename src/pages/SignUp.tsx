@@ -4,37 +4,13 @@ import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { SocialAuth } from "@/components/auth/SocialAuth";
 import { EmailSignUpForm } from "@/components/auth/EmailSignUpForm";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { AlertCircle, X } from "lucide-react";
-import { useState, useEffect } from "react";
+
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const [showNotification, setShowNotification] = useState(true);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-3 py-12 sm:py-16 relative bg-background">
-      {showNotification && (
-        <Alert 
-          className="fixed top-4 left-1/2 -translate-x-1/2 max-w-md w-[calc(100%-2rem)] z-50 border-revigreen bg-revigreen/10 animate-in fade-in duration-700 flex items-center justify-between"
-        >
-          <div className="flex items-center gap-2">
-            <AlertCircle className="h-4 w-4 text-revigreen flex-shrink-0" />
-            <AlertDescription className="text-revigreen text-sm">
-              This site is under development, some function may not work as expected.
-            </AlertDescription>
-          </div>
-          <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-6 w-6 shrink-0 text-revigreen hover:bg-revigreen/20 -mr-2"
-            onClick={() => setShowNotification(false)}
-          >
-            <X className="h-4 w-4" />
-            <span className="sr-only">Close notification</span>
-          </Button>
-        </Alert>
-      )}
 
       <Button
         variant="ghost"

@@ -72,7 +72,7 @@ export const EmailSignUpForm = () => {
           <Label htmlFor="firstName">First Name</Label>
           <Input 
             id="firstName" 
-            placeholder="John"
+            placeholder="Juan"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             disabled={isLoading}
@@ -83,7 +83,7 @@ export const EmailSignUpForm = () => {
           <Label htmlFor="lastName">Last Name</Label>
           <Input 
             id="lastName" 
-            placeholder="Doe"
+            placeholder="Dela Cruz"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             disabled={isLoading}
@@ -96,7 +96,7 @@ export const EmailSignUpForm = () => {
         <Input 
           id="email" 
           type="email" 
-          placeholder="john.doe@example.com"
+          placeholder="juan.delacruz@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isLoading}
@@ -109,7 +109,7 @@ export const EmailSignUpForm = () => {
           <Input 
             id="password" 
             type={showPassword ? "text" : "password"}
-            placeholder="Create a secure password"
+            placeholder="Enter a password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={isLoading}

@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { FileText, Plus, UserRound, Brain } from "lucide-react";
+import { Plus, UserRound, BarChart3, Settings } from "lucide-react";
 
 type DesktopSidebarProps = {
-  activeSection: 'upload' | 'create' | 'profile' | 'ai' | 'feedback';
-  onSectionChange: (section: 'upload' | 'create' | 'profile' | 'ai' | 'feedback') => void;
+  activeSection: 'overview' | 'create' | 'profile' | 'settings';
+  onSectionChange: (section: 'overview' | 'create' | 'profile' | 'settings') => void;
 };
 
 export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSidebarProps) {
@@ -11,12 +11,12 @@ export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSideba
     <div className="hidden md:block w-64 border-r p-4">
       <div className="space-y-2">
         <Button
-          variant={activeSection === 'upload' ? 'default' : 'ghost'}
+          variant={activeSection === 'overview' ? 'default' : 'ghost'}
           className="w-full justify-start"
-          onClick={() => onSectionChange('upload')}
+          onClick={() => onSectionChange('overview')}
         >
-          <FileText className="mr-2 h-5 w-5" />
-          Upload PDF
+          <BarChart3 className="mr-2 h-5 w-5" />
+          Overview
         </Button>
         <Button
           variant={activeSection === 'create' ? 'default' : 'ghost'}
@@ -25,14 +25,6 @@ export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSideba
         >
           <Plus className="mr-2 h-5 w-5" />
           Create Cards
-        </Button>
-        <Button
-          variant={activeSection === 'ai' ? 'default' : 'ghost'}
-          className="w-full justify-start"
-          onClick={() => onSectionChange('ai')}
-        >
-          <Brain className="mr-2 h-5 w-5" />
-          AI vs Me
         </Button>
         <Button
           variant={activeSection === 'profile' ? 'default' : 'ghost'}

@@ -8,14 +8,17 @@ import { MobileNav } from "@/components/MobileNav";
 import { DesktopSidebar } from "@/components/DesktopSidebar";
 import { CreateCardsSection } from "@/components/CreateCardsSection";
 import { ProfileSection } from "@/components/ProfileSection";
-import { AIvsUserSection } from "@/components/AIvsUserSection";
+import { OverviewSection } from "@/components/OverviewSection";
+import { FeedbackSection } from "@/components/FeedbackSection";
+import { SettingsSection } from "@/components/SettingsSection";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Dashboard() {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
   const [cards, setCards] = useState<Flashcard[]>(() => flashcardService.getAll());
   const [editingCard, setEditingCard] = useState<Flashcard | null>(null);
-  const [activeSection, setActiveSection] = useState<'upload' | 'create' | 'profile' | 'ai' | 'feedback'>('upload');
+  const [activeSection, setActiveSection] = useState<'overview' | 'create' | 'profile' | 'settings'>('overview');
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -84,38 +87,48 @@ export default function Dashboard() {
       <div className="flex min-h-[calc(100vh-65px)]">
         <DesktopSidebar activeSection={activeSection} onSectionChange={setActiveSection} />
         
-        <div className="flex-1 p-4 overflow-auto">
+        <div className="flex-1 p-4 pb-20 md:pb-4 overflow-auto">
           <div className="container mx-auto max-w-4xl">
             <div className="grid gap-6">
-              {activeSection === 'upload' && (
-                <div className="pt-16 md:pt-0">
-                  <PDFUploader />
-                </div>
-              )}
-
+              {activeSection === 'overview' && <OverviewSection />}
+              
               {activeSection === 'create' && (
-                <CreateCardsSection
-                  showCreateCard={showCreateCard}
-                  setShowCreateCard={setShowCreateCard}
-                  formData={formData}
-                  setFormData={setFormData}
-                  handleSubmit={handleSubmit}
-                  editingCard={editingCard}
-                  resetForm={resetForm}
-                  cards={cards}
-                  onEdit={handleEdit}
-                  onDelete={handleDelete}
-                  setIsReviewing={setIsReviewing}
-                />
-              )}
-
-              {activeSection === 'ai' && (
-                <AIvsUserSection />
+                <div className="space-y-6 pt-16 md:pt-0">
+                  <Tabs defaultValue="create" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="create">Create Cards</TabsTrigger>
+                      <TabsTrigger value="upload">Upload PDF</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="create">
+                      <CreateCardsSection
+                        showCreateCard={showCreateCard}
+                        setShowCreateCard={setShowCreateCard}
+                        formData={formData}
+                        setFormData={setFormData}
+                        handleSubmit={handleSubmit}
+                        editingCard={editingCard}
+                        resetForm={resetForm}
+                        cards={cards}
+                        onEdit={handleEdit}
+                        onDelete={handleDelete}
+                        setIsReviewing={setIsReviewing}
+                      />
+                    </TabsContent>
+                    <TabsContent value="upload">
+                      <div className="mt-6">
+                        <PDFUploader />
+                      </div>
+                    </TabsContent>
+                  </Tabs>
+                </div>
               )}
 
               {activeSection === 'profile' && (
                 <div className="pt-16 md:pt-0">
-                  <ProfileSection />
+                  <div className="grid gap-6">
+                    <ProfileSection />
+                    <SettingsSection />
+                  </div>
                 </div>
               )}
             </div>

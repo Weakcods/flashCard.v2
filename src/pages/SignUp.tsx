@@ -4,14 +4,20 @@ import { ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { SocialAuth } from "@/components/auth/SocialAuth";
 import { EmailSignUpForm } from "@/components/auth/EmailSignUpForm";
-
+import { useState, useEffect } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Handle loading state if necessary
+  }, [isLoading]);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-3 py-12 sm:py-16 relative bg-background">
-
       <Button
         variant="ghost"
         onClick={() => navigate("/")}
@@ -43,7 +49,6 @@ export default function SignUp() {
           </div>
 
           <EmailSignUpForm />
-          
           <p className="text-center text-sm text-muted-foreground py-2">
             Already have an account?{" "}
             <Link 

@@ -166,11 +166,11 @@ export default function SignIn() {
                   className="text-sm text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   I agree to the{" "}
-                  <Link to="/terms" className="text-primary hover:underline">
+                    <Link to="/terms-of-service" className="text-primary hover:underline">
                     Terms of Service
-                  </Link>{" "}
+                    </Link>{" "}
                   and{" "}
-                  <Link to="/privacy" className="text-primary hover:underline">
+                  <Link to="/privacy-policy" className="text-primary hover:underline">
                     Privacy Policy
                   </Link>
                 </label>

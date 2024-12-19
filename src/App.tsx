@@ -16,6 +16,8 @@ import { DevelopmentBanner } from "./components/ui/development-banner";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
+import { Terms } from "@/components/policies/Terms";
+import { Privacy } from "@/components/policies/Privacy";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,6 +67,10 @@ const App = () => {
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/network-error" element={<NetworkError />} />
+                    <Route path="/terms-of-service" element={<Terms />} />
+                    <Route path="/privacy-policy" element={<Privacy />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </main>

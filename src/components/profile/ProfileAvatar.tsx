@@ -5,7 +5,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 
 interface ProfileAvatarProps {
-  user: any;
+  user: {
+    id: string;
+    avatar_url: string;
+    email?: string;
+  };
   onAvatarUpdate: (url: string) => void;
 }
 
@@ -45,11 +49,11 @@ export function ProfileAvatar({ user, onAvatarUpdate }: ProfileAvatarProps) {
         title: "Avatar updated successfully!",
         duration: 2000,
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       toast({
         variant: "destructive",
         title: "Error updating avatar",
-        description: error.message,
+        description: (error as Error).message,
       });
     } finally {
       setIsLoading(false);

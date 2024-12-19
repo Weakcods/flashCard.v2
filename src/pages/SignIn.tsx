@@ -119,7 +119,7 @@ export default function SignIn() {
               <Input
                 id="email"
                 type="email"
-                placeholder="john.doe@example.com"
+                placeholder="juandelacruz@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={isLoading}

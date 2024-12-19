@@ -3,10 +3,14 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar"
 
 import { cn } from "@/lib/utils"
 
+interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+    src: string;
+}
+
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
+  AvatarProps
+>(({ className, src, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
     className={cn(
@@ -14,9 +18,14 @@ const Avatar = React.forwardRef<
       className
     )}
     {...props}
-  />
+  >
+    <AvatarPrimitive.Image src={src} className="aspect-square h-full w-full" />
+    <AvatarPrimitive.Fallback className="flex h-full w-full items-center justify-center rounded-full bg-muted">
+      {/* Fallback content */}
+    </AvatarPrimitive.Fallback>
+  </AvatarPrimitive.Root>
 ))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+Avatar.displayName = "Avatar"
 
 const AvatarImage = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Image>,

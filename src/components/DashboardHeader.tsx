@@ -29,6 +29,7 @@ export function DashboardHeader() {
 
   const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
   const userInitials = currentUser.email ? currentUser.email.charAt(0).toUpperCase() : 'U';
+  const defaultAvatar = 'path/to/default/avatar.png'; // Add a path to a default avatar image
 
   if (isLoading) {
     return (
@@ -41,12 +42,14 @@ export function DashboardHeader() {
   return (
     <header className="border-b">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Reviewcard</h1>
+          <h1 className="text-2xl font-bold">
+            Review<span className="text-revigreen">card</span>
+          </h1>
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger className="focus:outline-none">
-              <Avatar>
+              <Avatar src={currentUser.avatar || defaultAvatar} className="border-2 border-revigreen rounded-full">
                 <AvatarFallback className="bg-revigreen text-background">
                   {userInitials}
                 </AvatarFallback>
@@ -76,7 +79,7 @@ export function DashboardHeader() {
             <AlertDialogDescription>
               This action will end your current session.
             </AlertDialogDescription>
-          </AlertDialogHeader>
+            </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction 

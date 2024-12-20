@@ -17,14 +17,17 @@ const Header = () => {
                 </a>
                 <div className="flex items-center gap-6">
                     <div className="hidden md:flex items-center gap-6">
-                        <ThemeToggle />
+                        
                         <Link to="/how-it-works">
-                            <Button variant="secondary">
+                            <Button
+                             variant="ghost"
+                             className="hover:bg-secondary hover:text-black dark:hover:bg-secondary dark:hover:text-white transition-colors">
                                 How it works
                             </Button>
                         </Link>
                         <Button 
-                            variant="secondary"
+                            variant="ghost"
+                            className="hover:bg-secondary hover:text-black dark:hover:bg-secondary dark:hover:text-white transition-colors"
                             onClick={() => window.location.href = "/faqs"}
                         >
                             FAQs
@@ -35,6 +38,7 @@ const Header = () => {
                         >
                             Sign In
                         </Button>
+                        <ThemeToggle />
                     </div>
                     <button
                         className="md:hidden"

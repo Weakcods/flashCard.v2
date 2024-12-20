@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/pages/Footer";
 import { Testimonials } from "@/pages/Testimonials";
-//import TryItOut from "@/pages/TryItOut";
+import TryItOut from "@/pages/TryItOut";
 
 const Index = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -35,7 +35,7 @@ const Index = () => {
       <main className="flex-1">
         <div className="pt-16">
           <Hero />
-
+          <TryItOut />
           <Testimonials />
         </div>
       </main>

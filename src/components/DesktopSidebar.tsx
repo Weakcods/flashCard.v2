@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Plus, UserRound, BarChart3, Settings } from "lucide-react";
+import { Plus, UserRound, BarChart3, Settings, MessageSquare } from "lucide-react";
 
 type DesktopSidebarProps = {
-  activeSection: 'overview' | 'create' | 'profile' | 'settings';
-  onSectionChange: (section: 'overview' | 'create' | 'profile' | 'settings') => void;
+  activeSection: 'overview' | 'create' | 'profile' | 'settings' | 'chat';
+  onSectionChange: (section: 'overview' | 'create' | 'profile' | 'settings' | 'chat') => void;
 };
 
 export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSidebarProps) {
@@ -25,6 +25,14 @@ export function DesktopSidebar({ activeSection, onSectionChange }: DesktopSideba
         >
           <Plus className="mr-2 h-5 w-5" />
           Create Cards
+        </Button>
+        <Button
+          variant={activeSection === 'chat' ? 'default' : 'ghost'}
+          className="w-full justify-start"
+          onClick={() => onSectionChange('chat')}
+        >
+          <MessageSquare className="mr-2 h-5 w-5" />
+          Chat
         </Button>
         <Button
           variant={activeSection === 'profile' ? 'default' : 'ghost'}

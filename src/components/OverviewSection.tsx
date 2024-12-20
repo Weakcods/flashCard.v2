@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { useQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { format } from "date-fns";
 import { Calendar, Activity } from "lucide-react";
 
@@ -44,9 +44,29 @@ export function OverviewSection() {
     },
   });
 
+  const updateChatData = async () => {
+    const { data: chats } = await supabase
+      .from('chat')
+      .select('created_at')
+      .eq('user_id', (await supabase.auth.getUser()).data.user?.id);
+    setChatData(chats);
+  };
+
+  const { data: chatData, refetch: refetchChatData } = useQuery({
+    queryKey: ['chat-stats'],
+    queryFn: async () => {
+      const { data: chats } = await supabase
+        .from('chats')
+        .select('created_at')
+        .eq('user_id', (await supabase.auth.getUser()).data.user?.id);
+      return chats;
+    },
+  });
+
   const chartData = [
     { name: 'Flashcards', count: flashcardsData?.length || 0 },
     { name: 'AI Questions', count: aiQuestionsData?.length || 0 },
+    { name: 'Chats', count: chatData?.length || 0 },
   ];
 
   const today = new Date();
@@ -71,13 +91,13 @@ export function OverviewSection() {
             </div>
             <div className="h-[300px]">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
+                <AreaChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="name" />
                   <YAxis />
                   <Tooltip />
-                  <Bar dataKey="count" fill="#24FE41" />
-                </BarChart>
+                  <Area type="monotone" dataKey="count" stroke="#24FE41" fill="#24FE41" />
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           </Card>

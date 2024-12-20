@@ -12,13 +12,14 @@ import { OverviewSection } from "@/components/OverviewSection";
 import { FeedbackSection } from "@/components/FeedbackSection";
 import { SettingsSection } from "@/components/SettingsSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Chat from "@/components/Chat";
 
 export default function Dashboard() {
   const [showCreateCard, setShowCreateCard] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
   const [cards, setCards] = useState<Flashcard[]>(() => flashcardService.getAll());
   const [editingCard, setEditingCard] = useState<Flashcard | null>(null);
-  const [activeSection, setActiveSection] = useState<'overview' | 'create' | 'profile' | 'settings'>('overview');
+  const [activeSection, setActiveSection] = useState<'overview' | 'create' | 'profile' | 'settings' | 'chat'>('overview');
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
@@ -129,6 +130,12 @@ export default function Dashboard() {
                     <ProfileSection />
                     <SettingsSection />
                   </div>
+                </div>
+              )}
+
+              {activeSection === 'chat' && (
+                <div className="pt-16 md:pt-0">
+                  <Chat />
                 </div>
               )}
             </div>

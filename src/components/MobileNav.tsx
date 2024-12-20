@@ -1,15 +1,15 @@
 import { Button } from "@/components/ui/button";
-import { BarChart3, Plus, UserRound } from "lucide-react";
+import { BarChart3, Plus, UserRound, MessageSquare } from "lucide-react";
 
 type MobileNavProps = {
-  activeSection: 'overview' | 'create' | 'profile' | 'settings';
-  onSectionChange: (section: 'overview' | 'create' | 'profile' | 'settings') => void;
+  activeSection: 'overview' | 'create' | 'chat' | 'settings' | 'profile';
+  onSectionChange: (section: 'overview' | 'create' | 'chat' | 'settings' | 'profile') => void;
 };
 
 export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 border-t bg-background z-50">
-      <div className="grid grid-cols-3 gap-1 p-2">
+      <div className="grid grid-cols-4 gap-1 p-2">
         <Button
           variant={activeSection === 'overview' ? 'default' : 'ghost'}
           className="flex flex-col items-center justify-center h-16 px-2"
@@ -25,6 +25,14 @@ export function MobileNav({ activeSection, onSectionChange }: MobileNavProps) {
         >
           <Plus className="h-5 w-5" />
           <span className="text-xs mt-1">Create</span>
+        </Button>
+        <Button
+          variant={activeSection === 'chat' ? 'default' : 'ghost'}
+          className="flex flex-col items-center justify-center h-16 px-2"
+          onClick={() => onSectionChange('chat')}
+        >
+          <MessageSquare className="h-5 w-5" />
+          <span className="text-xs mt-1">Chat</span>
         </Button>
         <Button
           variant={activeSection === 'profile' ? 'default' : 'ghost'}

@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Hero } from "@/components/Hero";
-import { Flashcard } from "@/components/Flashcard";
 import { Footer } from "@/pages/Footer";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { Testimonials } from "@/pages/Testimonials";
-
-const questions = [
-  { question: "What is the capital of France?", answer: "Paris" },
-  { question: "What is the capital of Spain?", answer: "Madrid" },
-  // Add more questions as needed
-];
+//import TryItOut from "@/pages/TryItOut";
 
 const Index = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleNext = () => {
-    setCurrentQuestionIndex((prevIndex) => (prevIndex + 1) % questions.length);
+ 
+  const handleFlip = () => {
+    setIsFlipped((prev) => !prev);
   };
 
   return (
@@ -41,25 +35,7 @@ const Index = () => {
       <main className="flex-1">
         <div className="pt-16">
           <Hero />
-          
-          <section className="py-8 md:py-16 bg-muted">
-            <div className="container mx-auto px-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8">Try It Out</h2>
-              <div className="flex flex-col items-center max-w-md mx-auto">
-                <Flashcard
-                  question={questions[currentQuestionIndex].question}
-                  answer={questions[currentQuestionIndex].answer}
-                />
-                <Button 
-                  onClick={handleNext} 
-                  className="mt-6 w-full sm:w-auto flex items-center justify-center"
-                >
-                  Next
-                  <ArrowRight className="ml-2" />
-                </Button>
-              </div>
-            </div>
-          </section>
+
           <Testimonials />
         </div>
       </main>

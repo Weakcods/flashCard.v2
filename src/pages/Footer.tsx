@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <h2 className="text-2xl font-bold">
-              Review<span className="text-revigreen">card</span>
+              Mind<span className="text-revigreen">master</span>
             </h2>
             <p className="text-muted-foreground">
               Empowering learners with smart flashcards and AI-powered study tools.

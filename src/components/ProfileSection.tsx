@@ -4,8 +4,16 @@ import { ProfileAvatar } from "./profile/ProfileAvatar";
 import { ProfileForm } from "./profile/ProfileForm";
 import { Loader2 } from "lucide-react";
 
+interface UserProfile {
+  id: string;
+  first_name: string;
+  last_name: string;
+  avatar_url: string;
+  // Add other fields as necessary
+}
+
 export function ProfileSection() {
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<UserProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
